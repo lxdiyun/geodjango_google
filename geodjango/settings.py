@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'world',
+    'gmap',
+    'util',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -157,3 +159,5 @@ LOGGING = {
         },
     }
 }
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyC0EnKraozzSAB8B5fqSN3w-vFWChYdWIQ'
