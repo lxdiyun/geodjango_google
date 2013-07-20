@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.contrib.gis.maps.google.gmap import GoogleMapException
+from util.models import Point
 
 
 class GmapView(TemplateView):
@@ -16,5 +17,9 @@ class GmapView(TemplateView):
                                      'settings).')
 
         context['GOOGLE_MAPS_API_KEY'] = key
+
+        points = Point.objects.all()
+
+        context['points'] = points
 
         return context
