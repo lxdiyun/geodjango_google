@@ -23,3 +23,7 @@ class GmapView(TemplateView):
         context['points'] = points
 
         return context
+
+
+class GmapSimpleView(GmapView):
+    template_name = "gmap/gmap_simple.html"
