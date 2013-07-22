@@ -5,9 +5,14 @@
 
 
 {% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}utils/utils.css">
 <style type="text/css">
-#map label { width: auto; }
-#map img { max-width: none; }
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	position: relative;
+}
+
 </style>
  {% endblock %}
 
@@ -17,7 +22,7 @@
 		<div class="span1">
 		</div>
 		<div class="span10">
-			<div  style="width:100%; height:400px;" id="map">
+			<div  class="map_canvas" style="height:400px" id="map">
 			</div>
 		</div>
 		<div class="span1">
