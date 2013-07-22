@@ -161,3 +161,4 @@ LOGGING = {
 }
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyC0EnKraozzSAB8B5fqSN3w-vFWChYdWIQ'
+GOOGLE_MAPS_API_URL = 'http://ditu.google.cn/maps/api/js?'

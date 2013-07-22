@@ -14,7 +14,7 @@ function initialize() {
 function loadScript() {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
-	script.src = 'http://ditu.google.cn/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&language=zh-CN&sensor=false&' +
+	script.src = '{{ GOOGLE_MAPS_API_URL }}?key={{ GOOGLE_MAPS_API_KEY }}&language=zh-CN&sensor=false&' +
 		'callback=initialize';
 	document.body.appendChild(script);
 }
