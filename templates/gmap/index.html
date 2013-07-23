@@ -1,5 +1,7 @@
 {% extends "utils/site_base.html" %}
 
+{% load dajaxice_templatetags %}
+
 
 {% block title %}Gmap{% endblock title %}
 
@@ -16,24 +18,33 @@ body {
 </style>
  {% endblock %}
 
+
 {% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Gmap</a>
+		</div>
+	</div>
+</div>
 <div class="container">
 	<div class="row">
-		<div class="span1">
-		</div>
-		<div class="span10">
-			<div  class="map_canvas" style="height:400px" id="map">
+		<div class="span8">
+			<div  class="map_canvas img-polaroid" style="height:320px" id="map">
 			</div>
 		</div>
-		<div class="span1">
+		<div class="span4" id="point_info">
 		</div>
 	</div>
 </div>
 {% endblock content %}
 
+
 {% block extra_tail %}
 <script type="text/javascript" src="{{ GOOGLE_MAPS_API_URL }}?key={{ GOOGLE_MAPS_API_KEY }}&sensor=false&language=zh-CN"> </script>
-<script type="text/javascript" src="{{ STATIC_URL }}utils/gmaps.js" %}"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}utils/gmaps.js"></script>
+{% dajaxice_js_import %}
+<script type="text/javascript" src="{{ STATIC_URL }}dajax/jquery.dajax.core.js"></script>
 <script type="text/javascript">
 {% include "gmap/index.js" %}
 </script>

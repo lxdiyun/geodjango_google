@@ -19,5 +19,5 @@ class GmapSimpleView(GmapView):
     template_name = "gmap/gmap_simple.html"
 
 
-class GmapIndexView(GmapBaseView):
+class GmapIndexView(GmapView):
     template_name = "gmap/index.html"
