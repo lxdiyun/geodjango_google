@@ -1,6 +1,13 @@
-spatialite geodjango.db "SELECT InitSpatialMetaData();"
-syncdb
+Initlaztion the database
+=======================
+.. code-block:: shel
+     spatialite geodjango.db "SELECT InitSpatialMetaData();"
 
-shell
->>> from world import load
->>> load.run()
+Then you can sync the database by syncdb
+
+Import the world data into database
+===================================
+start the django shell
+.. code-block:: python
+    from world import load
+    load.run()
