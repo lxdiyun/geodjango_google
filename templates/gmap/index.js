@@ -32,6 +32,8 @@ function addMarker(map) {
 
 function addListerner(marker, infowindow) {
 	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(marker.title);
+		infowindow.open(marker.get('map'), marker);
 		display_point(marker.id)
 	});
 }
