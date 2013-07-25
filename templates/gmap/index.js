@@ -6,7 +6,23 @@ function init() {
 		div: '#map', 
 		zoom: 12,
 		lat: 23.37, 
-		lng: 116.71 
+		lng: 116.71,
+		streetViewControl: false,
+		overviewMapControl: false,
+		panControl: false,
+		scaleControl: true,
+		scaleControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_BOTTOM
+		},
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+			position: google.maps.ControlPosition.TOP_LEFT
+		},
+		zoomControl: true,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.TOP_RIGHT
+		},
 	};
 	map = new GMaps(mapOption);
 

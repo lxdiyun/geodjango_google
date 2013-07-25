@@ -6,15 +6,6 @@ from util.models import Point
 
 
 @dajaxice_register
-def multiply(request, a, b):
-    dajax = Dajax()
-    result = int(a) * int(b)
-    dajax.assign('#result', 'value', str(result))
-
-    return dajax.json()
-
-
-@dajaxice_register
 def display_point(request, point_id):
     pid = int(point_id)
     photos = None
