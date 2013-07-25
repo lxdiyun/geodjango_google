@@ -39,11 +39,16 @@ GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/js'
 
 Setup the database
 -------------------
-use spatialite to generate the splite file
+use spatialite to generate the splite file. More information can be find at [here](https://docs.djangoproject.com/en/dev/ref/contrib/gis/install/spatialite/)
 ``` shell
-spatialite geodjango.db "SELECT InitSpatialMetaData();"
+$spatialite geodjango.db "SELECT InitSpatialMetaData();"
+the SPATIAL_REF_SYS table already contains some row(s)
+ InitSpatiaMetaData ()error:"table spatial_ref_sys already exists"
+0
 ```
-Then  sync the database by syncdb
+The error messages shown can be safely ignore.
+
+Then sync the database by syncdb
 
 Import the world data into database
 -----------------------------------
