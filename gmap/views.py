@@ -1,8 +1,8 @@
-from util.models import Point
-from util.views import GmapBaseView
+from models import Point
+from utils.views import GmapViewBase
 
 
-class GmapView(GmapBaseView):
+class GmapView(GmapViewBase):
     template_name = "gmap/gmap.html"
 
     def get_context_data(self, **kwargs):

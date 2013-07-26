@@ -1,5 +1,5 @@
 from django.contrib.contenttypes import generic
-from util.utils_models import PointBase, PhotoBase
+from utils.models import PointBase, PhotoBase
 
 
 class Point(PointBase):

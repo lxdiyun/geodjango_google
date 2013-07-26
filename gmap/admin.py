@@ -1,10 +1,10 @@
 from django.contrib.gis import admin
-from util.utils_admin import PointAdminBase, PhotoInlineBase
+from utils.admin import PointAdminBase, PhotoInlineBase
 from models import Point, Photo
 
 
 class PhotoInline(PhotoInlineBase):
-    models = Photo
+    model = Photo
 
 
 class PointAdmin(PointAdminBase):

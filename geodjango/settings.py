@@ -131,8 +131,8 @@ INSTALLED_APPS = (
     'dajaxice',
     'dajax',
     'world',
+    'utils',
     'gmap',
-    'util',
 )
 
 # A sample logging configuration. The only tangible logging

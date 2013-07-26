@@ -2,7 +2,7 @@ from dajax.core import Dajax
 from dajaxice.decorators import dajaxice_register
 from django.template.loader import render_to_string
 from django.core.exceptions import ObjectDoesNotExist
-from util.models import Point
+from models import Point
 
 
 @dajaxice_register
