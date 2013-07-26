@@ -1,35 +1,18 @@
-{% extends "utils/site_base.html" %}
+{% extends "gmap/base.html" %}
 
 
 {% block title %}Gmap{% endblock title %}
 
 
 {% block extra_head %}
-
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}utils/utils.css">
-
-<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-	position: relative;
-}
-</style>
-
 {% include "utils/bootstrap-image/head.html" %}
-
 {% endblock %}
 
 
-{% block content %}
+{% block index %} class="active" {% endblock %}
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<a class="brand" href="#">Gmap</a>
-		</div>
-	</div>
-</div>
+
+{% block content %}
 <div class="container">
 	<div class="row">
 		<div class="span8">
@@ -40,12 +23,10 @@ body {
 		</div>
 	</div>
 </div>
-
 {% endblock content %}
 
 
 {% block extra_tail %}
-
 <script type="text/javascript" src="{{ GOOGLE_MAPS_API_URL }}?key={{ GOOGLE_MAPS_API_KEY }}&sensor=false&language=zh-CN"> </script>
 <script type="text/javascript" src="{{ STATIC_URL }}utils/gmaps.js"></script>
 
@@ -54,5 +35,4 @@ body {
 </script>
 
 {% include "utils/bootstrap-image/tail.html" %}
-
 {% endblock%}

@@ -1,0 +1,39 @@
+{% extends "gmap/base.html" %}
+
+
+{% block title %}Gmap Gallery{% endblock title %}
+
+
+{% block extra_head %}
+{% include "utils/blueimp-Gallery/head.html" %}
+{% endblock %}
+
+
+{% block gallery %} class="active" {% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div id="blueimp_Gallery_links">
+		{% for photo in photos %}
+		<a href="{{ photo.image.url }}" target="_blank" title="{{ photo.name }}">
+			<img src="{{ photo.thumbnail.url }}" alt="{{ photo.name }}">
+		</a>
+		{% endfor %}
+	</div>
+	<!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
+	<div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel gallery_canvas">
+		<div class="slides"></div>
+		<h3 class="title"></h3>
+		<a class="prev">‹</a>
+		<a class="next">›</a>
+		<a class="play-pause"></a>
+		<ol class="indicator"></ol>
+	</div>
+</div>
+{% endblock content %}
+
+
+{% block extra_tail %}
+{% include "utils/blueimp-Gallery/tail.html" %}
+{% endblock%}

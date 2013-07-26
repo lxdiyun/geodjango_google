@@ -1,6 +1,6 @@
-from models import Point
+from models import Point, Photo
 from utils.views import GmapViewBase
-from django.core.context_processors import csrf
+from django.views.generic import TemplateView
 
 
 class GmapView(GmapViewBase):
@@ -22,3 +22,17 @@ class GmapSimpleView(GmapView):
 
 class GmapIndexView(GmapView):
     template_name = "gmap/index.html"
+
+
+class GalleryView(TemplateView):
+    template_name = "gmap/gallery.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(GalleryView, self).get_context_data(**kwargs)
+
+        photos = Photo.objects.all()
+        context['photos'] = photos
+
+        print(context)
+
+        return context
