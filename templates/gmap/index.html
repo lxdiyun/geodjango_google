@@ -7,19 +7,26 @@
 
 
 {% block extra_head %}
+
+{% dajaxice_js_import %}
+
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}utils/utils.css">
+
 <style type="text/css">
 body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 	position: relative;
 }
-
 </style>
- {% endblock %}
+
+{% include "utils/image_bootstrap/head.html" %}
+
+{% endblock %}
 
 
 {% block content %}
+
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -37,15 +44,20 @@ body {
 		</div>
 	</div>
 </div>
+
 {% endblock content %}
 
 
 {% block extra_tail %}
+
 <script type="text/javascript" src="{{ GOOGLE_MAPS_API_URL }}?key={{ GOOGLE_MAPS_API_KEY }}&sensor=false&language=zh-CN"> </script>
 <script type="text/javascript" src="{{ STATIC_URL }}utils/gmaps.js"></script>
-{% dajaxice_js_import %}
 <script type="text/javascript" src="{{ STATIC_URL }}dajax/jquery.dajax.core.js"></script>
+
 <script type="text/javascript">
 {% include "gmap/index.js" %}
 </script>
+
+{% include "utils/image_bootstrap/tail.html" %}
+
 {% endblock%}

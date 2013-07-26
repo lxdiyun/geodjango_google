@@ -1,5 +1,6 @@
 from models import Point
 from utils.views import GmapViewBase
+from django.core.context_processors import csrf
 
 
 class GmapView(GmapViewBase):

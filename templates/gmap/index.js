@@ -54,10 +54,6 @@ function addListerner(marker, infowindow) {
 	});
 }
 
-function calculate(){
-	Dajaxice.gmap.multiply(Dajax.process,{'a':$('#a').val(),'b':$('#b').val()})
-}
-
 function display_point(id) {
 	Dajaxice.gmap.display_point(Dajax.process,{'point_id':id})
 }
