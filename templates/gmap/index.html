@@ -1,14 +1,10 @@
 {% extends "utils/site_base.html" %}
 
-{% load dajaxice_templatetags %}
-
 
 {% block title %}Gmap{% endblock title %}
 
 
 {% block extra_head %}
-
-{% dajaxice_js_import %}
 
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}utils/utils.css">
 
@@ -20,7 +16,7 @@ body {
 }
 </style>
 
-{% include "utils/image_bootstrap/head.html" %}
+{% include "utils/bootstrap-image/head.html" %}
 
 {% endblock %}
 
@@ -52,12 +48,11 @@ body {
 
 <script type="text/javascript" src="{{ GOOGLE_MAPS_API_URL }}?key={{ GOOGLE_MAPS_API_KEY }}&sensor=false&language=zh-CN"> </script>
 <script type="text/javascript" src="{{ STATIC_URL }}utils/gmaps.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}dajax/jquery.dajax.core.js"></script>
 
 <script type="text/javascript">
 {% include "gmap/index.js" %}
 </script>
 
-{% include "utils/image_bootstrap/tail.html" %}
+{% include "utils/bootstrap-image/tail.html" %}
 
 {% endblock%}
