@@ -8,7 +8,7 @@ This project not only follow the steps in the geogjango tutorial but also implen
 * Simple Goolge Map and Marker frontpage, using JS Library [Gmaps.js](http://hpneo.github.io/gmaps/ )
 * [Bootstrap](http://twitter.github.io/bootstrap/) based frontpage UI
 * Ajax hanlder for Google marker chick event, with the help of [Dajax](http://www.dajaxproject.com/)
-* Image gallery based on [django-imagekit][1], [Bootstrap-Image-Gallery][2] and [blueimp Gallery][3].
+* Image gallery based on [django-imagekit][1], [Bootstrap-Image-Gallery][2] and [blueimp Gallery][3]
    [1]: https://github.com/matthewwithanm/django-imagekit 
    [2]: https://github.com/blueimp/Bootstrap-Image-Gallery
    [3]: https://github.com/blueimp/Gallery
@@ -24,6 +24,7 @@ Requirements
 * [django-imagekit](https://github.com/matthewwithanm/django-imagekit)
 * dajaxice
 * [dajax](http://www.dajaxproject.com/)
+* [django-debug-toolbar](https://github.com/django-debug-toolbar/django-debug-toolbar)
 
 SETUP
 =====

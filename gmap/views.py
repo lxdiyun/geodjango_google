@@ -33,6 +33,4 @@ class GalleryView(TemplateView):
         photos = Photo.objects.all()
         context['photos'] = photos
 
-        print(context)
-
         return context

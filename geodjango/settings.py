@@ -99,6 +99,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -144,6 +145,7 @@ INSTALLED_APPS = (
     'world',
     'utils',
     'gmap',
+    'debug_toolbar',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +179,14 @@ LOGGING = {
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyC0EnKraozzSAB8B5fqSN3w-vFWChYdWIQ'
 GOOGLE_MAPS_API_URL = 'http://ditu.google.cn/maps/api/js'
+
+if DEBUG is True:
+    INTERNAL_IPS = ('127.00.0.1', '10.0.2.2')
+
+    def custom_show_toolbar(request):
+        return True  # Always show toolbar, for example purposes only.
+
+    DEBUG_TOOLBAR_CONFIG = {
+#        'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+        'TAG': 'body',
+    }

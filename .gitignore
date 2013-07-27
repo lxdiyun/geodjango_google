@@ -3,3 +3,4 @@
 geodjango.db
 static/
 media/
+debug_toolbar/
