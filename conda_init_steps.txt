@@ -1,0 +1,4 @@
+conda install conda-forge::libspatialite
+conda install conda-forge::gdal
+conda install conda-forge::pillow
+

@@ -1,3 +1,0 @@
-[submodule "utils"]
-	path = utils
-	url = git@github.com:lxdiyun/django_util.git

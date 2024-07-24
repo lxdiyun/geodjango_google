@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Points</title>
+    <style>
+        /* Set the size of the map and details container */
+        #map {
+            height: 800px;
+            width: 75%;
+            float: left;
+        }
+        #details {
+            height: 400px;
+            width: 25%;
+            float: left;
+            overflow-y: auto;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .image-thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            float: left;
+        }
+    </style>
+    <!-- Include Google Map API -->
+    {% include 'load_google_maps_api_script.html' %}
+    <!-- Include jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include Lightbox2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- Include Lightbox2 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        function initMap() {
+            var bounds = new google.maps.LatLngBounds();
+            var mapOptions = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+            var mapPoints = JSON.parse('{{ map_points|safe }}');
+            var infoWindow = new google.maps.InfoWindow();
+
+            mapPoints.features.forEach(function(feature) {
+                var lat = feature.geometry.coordinates[1];
+                var lng = feature.geometry.coordinates[0];
+                var name = feature.properties.name;
+                var images = feature.properties.images; // Array of image URLs
+
+                var position = new google.maps.LatLng(lat, lng);
+
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: name,
+		    label: {
+                        text: name,
+                        color: 'gold', // Specify the color you want for the label
+                        fontSize: '12px', // Specify the font size of the label
+                        fontWeight: 'bold' // Specify the font weight of the label
+                    }
+                });
+
+		google.maps.event.addListener(marker, 'click', function() {
+		    var content = '<h3>' + name + '</h3>';
+		    if (images) {
+			content += '<div>';
+			images.forEach(function(imageUrl) {
+			    // Wrap the thumbnail image in an anchor element with Lightbox attributes
+			    content += '<a href="' + imageUrl + '" data-lightbox="roadtrip" data-title="' + name + '">';
+			    content += '<img src="' + imageUrl + '" class="image-thumbnail" />';
+			    content += '</a>';
+			});
+			content += '</div>';
+		    }
+		    document.getElementById('details').innerHTML = content;
+		    lightbox.option({ // Optional: Lightbox options can be set here
+			'resizeDuration': 200,
+			'wrapAround': true
+		    });
+	        });
+
+                // Extend the bounds to include each marker's position
+                bounds.extend(position);
+            });
+
+            // Now fit the map to the newly inclusive bounds
+            map.fitBounds(bounds);
+
+            // Optional: adjust the zoom level after fitBounds()
+            var listener = google.maps.event.addListener(map, "idle", function () {
+                if (map.getZoom() > 16) {
+                    map.setZoom(16);
+                    google.maps.event.removeListener(listener);
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="initMap()">
+    <h1>Map Points</h1>
+    <div id="map"></div>
+    <div id="details"><p>Click on a point to see details here.</p></div>
+</body>
+</html>

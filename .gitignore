@@ -1,6 +1,5 @@
 *.swp
 *.pyc
-geodjango.db
+db.sqlite3
 static/
 media/
-debug_toolbar

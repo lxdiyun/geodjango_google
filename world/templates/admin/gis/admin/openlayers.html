@@ -1,0 +1,8 @@
+{% extends "gis/admin/openlayers.html" %}
+{% block extra_libs %}
+{{ block.super }}
+{% include 'load_google_maps_api_script.html' %}
+<script type="text/javascript">
+// JavaScript to integrate Google Maps as a base layer comes here
+</script>
+{% endblock %}

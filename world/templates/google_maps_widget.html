@@ -1,0 +1,46 @@
+<!-- templates/google_maps_widget.html -->
+{% load static %}
+<input type="text" style="width:80%", id="{{ widget.attrs.id }}" name="{{ widget.name }}" value="{{ widget.value }}" />
+<div id="map" style="width: 100%; height: 800px;"></div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
+<script>
+	function initMap() {
+		var mapCenter = {{ DEFAULT_MAP_CENTER }};
+		var inputField = document.getElementById('{{ widget.attrs.id }}');
+		var initialValue = inputField.value;
+
+		// Check if initialValue is not empty and contains a comma
+		if (initialValue && initialValue.includes(',')) {
+			var coords = initialValue.split(',');
+			if (coords.length === 2) {
+				var lat = parseFloat(coords[0]);
+				var lng = parseFloat(coords[1]);
+				// Check if both latitude and longitude are valid numbers
+				if (!isNaN(lat) && !isNaN(lng)) {
+					mapCenter = {lat: lat, lng: lng};
+				}
+			}
+		}
+
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 12,
+			center: mapCenter
+		});
+
+		var marker = new google.maps.Marker({
+			position: mapCenter,
+			map: map,
+			draggable: true
+		});
+
+		google.maps.event.addListener(marker, 'dragend', function (evt) {
+			document.getElementById('{{ widget.attrs.id }}').value = evt.latLng.lat() + ',' + evt.latLng.lng();
+		});
+	}
+	// Add event listener for window 'load' event to call initMap
+	window.addEventListener('load', initMap);
+</script>
+
+{% include 'load_google_maps_api_script.html' %}
+

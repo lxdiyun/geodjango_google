@@ -1,21 +1,29 @@
 from django.contrib.gis import admin
-from django.contrib.gis.maps.google import GoogleMap
-from models import WorldBorder
-from django.conf import settings
-from django.contrib.gis.maps.google.gmap import GoogleMapException
+from django.contrib.gis.db import models
+from django.contrib.gis.admin import OSMGeoAdmin
+import admin_thumbnails
+from .models import MapPoint, WorldBorder, MapPointImage
+from .widgets import GoogleMapsWidget
 
-try:
-    key = settings.GOOGLE_MAPS_API_KEY
-except AttributeError:
-    raise GoogleMapException('Google Maps API Key not found (try '
-                             'adding GOOGLE_MAPS_API_KEY to your '
-                             'settings).')
-# Can also set GOOGLE_MAPS_API_KEY in settings
-GMAP = GoogleMap(key=key)
+from .models import MapPoint, MapPointImage
 
 
-class GoogleAdmin(admin.OSMGeoAdmin):
-    extra_js = [GMAP.api_url + GMAP.key]
-    map_template = 'gis/admin/google.html'
+@admin_thumbnails.thumbnail('image')
+class MapPointImageInline(admin.TabularInline):  # or use admin.StackedInline for a different layout
+    model = MapPointImage
+    extra = 1  # How many extra forms to show
 
-admin.site.register(WorldBorder, GoogleAdmin)
+
+@admin.register(MapPoint)
+class MapPointAdmin(admin.ModelAdmin):
+    list_display = ('name', 'location')
+    inlines = [MapPointImageInline]
+    formfield_overrides = {
+        models.PointField: {"widget": GoogleMapsWidget}
+    }
+
+@admin.register(WorldBorder)
+class WorldBorderAdmin(OSMGeoAdmin):
+    pass
+
+

@@ -1,0 +1,11 @@
+asgiref @ file:///work/perseverance-python-buildout/croot/asgiref_1698866701569/work
+Django @ file:///work/perseverance-python-buildout/croot/django_1698884878321/work
+django-admin-thumbnails==0.2.9
+GDAL @ file:///home/conda/feedstock_root/build_artifacts/libgdal-core_1720821478200/work/build/swig/python
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1718615032431/work/dist/numpy-2.0.0-cp312-cp312-linux_x86_64.whl#sha256=cf9c4867aa0113ba6188f2108d0bc7dc54aae160eeeec2e720b69b0b04bd1243
+pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1719903548521/work
+python-dotenv==1.0.1
+setuptools==69.5.1
+six==1.16.0
+sqlparse @ file:///work/perseverance-python-buildout/croot/sqlparse_1698874574933/work
+wheel==0.43.0
