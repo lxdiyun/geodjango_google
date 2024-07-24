@@ -16,6 +16,10 @@ Requirements
 SETUP
 =====
 
+Install required libraries 
+---------------------
+One method is use conda and follow up the steps in [conda_init_steps.txt](conda_init_steps.txt)
+
 Confiugre the setting
 ---------------------
 Google MAP API key is needed for the project. Follow this [document](https://developers.google.com/maps/documentation/javascript/tutorial#api_key).
