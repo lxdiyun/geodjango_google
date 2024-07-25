@@ -15,8 +15,8 @@ class GoogleMapsWidget(forms.TextInput):
             context['widget']['value'] = f"{value.y},{value.x}"  # lat, lng
 
         context['GOOGLE_MAPS_API_KEY'] = settings.GOOGLE_MAPS_API_KEY
-        lat, lng = settings.DEFAULT_MAP_CENTER.split(',')
-        context['DEFAULT_MAP_CENTER'] = f'{{lat: {lat}, lng: {lng}}}'
+        lat, lng = settings.DEFAULT_GMAP_CENTER.split(',')
+        context['DEFAULT_GMAP_CENTER'] = f'{{lat: {lat}, lng: {lng}}}'
 
         return context
 

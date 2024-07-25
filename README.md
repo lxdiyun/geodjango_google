@@ -27,6 +27,11 @@ create .env file,
 ```env
 GOOGLE_MAPS_API_KEY=
 DEFAULT_MAP_CENTER=30.5,128.05
+
+#
+AMAP_SECURITY_JS_CODE=
+AMAP_API_KEY=
+
 ```
 
 Initialize database and create admin user

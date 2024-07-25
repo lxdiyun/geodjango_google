@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>高德地图显示</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            height: 75%;
+            width: 75%;
+            float: left;
+        }
+        #details {
+            height: 75%;
+            width: 25%;
+            float: left;
+            overflow-y: auto;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .image-thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            float: left;
+        }
+    </style>
+    <!-- Include jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include Lightbox2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- Include Lightbox2 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+</head>
+<body>
+    <h1>AMap Points</h1>
+    <div id="container"></div>
+    <div id="details"><p>Click on a point to see details here.</p></div>
+
+    <!-- 加载地图JSAPI脚本 -->
+    <script src="https://webapi.amap.com/loader.js"></script>
+    <script type="text/javascript">
+      window._AMapSecurityConfig = {
+	      securityJsCode: "{{ AMAP_SECURITY_JS_CODE }}",
+      };
+      AMapLoader.load({
+	      key: "{{ AMAP_API_KEY }}", //申请好的 Web 端开发 Key
+	      version: "2.0",
+	      plugins: ["AMap.Scale", "AMap.Marker", "AMap.InfoWindow"]
+      })
+        .then((AMap) => {
+          var map = new AMap.Map("container");
+          map.addControl(new AMap.Scale());
+
+          var mapPoints = {{ amap_points|safe }};
+          mapPoints.features.forEach(function(feature) {
+            var position = new AMap.LngLat(feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+            var marker = new AMap.Marker({
+              position: position,
+              map: map,
+              title: feature.properties.name,
+	      label: { // This is the label for the marker
+           	content: feature.properties.name,
+            	offset: new AMap.Pixel(10, -25),
+              }
+            });
+
+            marker.on('click', function() {
+              var content = '<h3>' + feature.properties.name + '</h3>';
+              if (feature.properties.images) {
+                content += '<div>';
+                feature.properties.images.forEach(function(imageUrl, index) {
+                  content += '<a href="' + imageUrl + '" data-lightbox="image-set" data-title="' + feature.properties.name + '">';
+                  content += '<img src="' + imageUrl + '" class="image-thumbnail" />';
+                  content += '</a>';
+                });
+                content += '</div>';
+              }
+              $('#details').html(content);
+              lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+              });
+              lightbox.refresh(); // This reinitializes Lightbox given the new set of images.
+            });
+
+            map.setFitView(); // Adjust the map view to include all markers
+          });
+        })
+        .catch((e) => {
+          console.error(e); //加载错误提示
+        });
+    </script>
+</body>
+</html>
+

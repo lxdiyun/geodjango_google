@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #gis
     "django.contrib.gis",
     "world",
+    "gmap",
 ]
 
 MIDDLEWARE = [
@@ -66,9 +67,9 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'world.context_processors.google_maps',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'gmap.context_processors.maps',
             ],
         },
     },
@@ -136,4 +137,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 load_dotenv()
 # Get environment variables
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
-DEFAULT_MAP_CENTER = os.getenv('DEFAULT_MAP_CENTER')
+DEFAULT_GMAP_CENTER = os.getenv('DEFAULT_GMAP_CENTER')
+AMAP_SECURITY_JS_CODE = os.getenv('AMAP_SECURITY_JS_CODE')
+AMAP_API_KEY = os.getenv('AMAP_API_KEY')
+

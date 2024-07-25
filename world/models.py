@@ -1,6 +1,4 @@
 from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
-
 
 # Create your models here.
 class WorldBorder(models.Model):
@@ -24,20 +22,3 @@ class WorldBorder(models.Model):
     # Returns the string representation of the model.
     def __str__(self):
         return self.name
-
-class MapPoint(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.PointField()
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "Map Points"
-
-class MapPointImage(models.Model):
-    map_point = models.ForeignKey(MapPoint, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='map_images/')
-
-    def __str__(self):
-        return f"Image for {self.map_point.name}"

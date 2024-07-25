@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Map Points</title>
+    <title>Google Map Points</title>
     <style>
         /* Set the size of the map and details container */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
         #map {
-            height: 800px;
+            height: 75%;
             width: 75%;
             float: left;
         }
@@ -40,7 +45,7 @@
             };
             var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-            var mapPoints = JSON.parse('{{ map_points|safe }}');
+            var mapPoints = JSON.parse('{{ gmap_points|safe }}');
             var infoWindow = new google.maps.InfoWindow();
 
             mapPoints.features.forEach(function(feature) {
