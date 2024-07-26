@@ -1,0 +1,53 @@
+<!-- templates/amap_widget.html -->
+{% load static %}
+<input type="text" style="width:80%", id="{{ widget.attrs.id }}" name="{{ widget.name }}" value="{{ widget.value }}" />
+<div id="amap-container" style="width: 100%; height: 800px;"></div>
+
+<!-- load AMAP JS AMPI Scirpt -->
+<script src="https://webapi.amap.com/loader.js"></script>
+<script type="text/javascript">
+  window._AMapSecurityConfig = {
+    securityJsCode: "{{ AMAP_SECURITY_JS_CODE }}",
+  };
+  AMapLoader.load({
+    key: "{{ AMAP_API_KEY }}",
+    version: "2.0",
+    plugins: ["AMap.Scale", "AMap.Marker", "AMap.InfoWindow"]
+  })
+  .then((AMap) => {
+
+    var inputField = document.getElementById('{{ widget.attrs.id }}');
+    var initialValue = inputField.value;
+    var mapCenter = {{ DEFAULT_AMAP_CENTER }};
+
+    if (initialValue && initialValue.includes(',')) {
+      var coords = initialValue.split(',');
+      if (coords.length === 2) {
+        var lat = parseFloat(coords[0]);
+        var lng = parseFloat(coords[1]);
+        if (!isNaN(lat) && !isNaN(lng)) {
+          mapCenter = {longitude: lng, latitude: lat};
+        }
+      }
+    }
+
+    var map = new AMap.Map("amap-container", {zoom: 12, center: [mapCenter.longitude, mapCenter.latitude]});
+    map.addControl(new AMap.Scale());
+
+    var marker = new AMap.Marker({
+      position: new AMap.LngLat(mapCenter.longitude, mapCenter.latitude),
+      map: map,
+      draggable: true
+    });
+
+    marker.on('dragend', function(evt) {
+      var position = evt.lnglat;
+      inputField.value = position.lat + ',' + position.lng;
+    });
+
+  })
+  .catch((e) => {
+    console.error(e); // Log any loading errors
+  });
+</script>
+

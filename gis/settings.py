@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "world",
     "gmap",
+    "amap"
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'gmap.context_processors.maps',
+                'gmap.context_processors.google_maps',
+                'amap.context_processors.amaps',
             ],
         },
     },
@@ -140,4 +142,4 @@ GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 DEFAULT_GMAP_CENTER = os.getenv('DEFAULT_GMAP_CENTER')
 AMAP_SECURITY_JS_CODE = os.getenv('AMAP_SECURITY_JS_CODE')
 AMAP_API_KEY = os.getenv('AMAP_API_KEY')
-
+DEFAULT_AMAP_CENTER = os.getenv('DEFAULT_AMAP_CENTER')

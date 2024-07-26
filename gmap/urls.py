@@ -4,6 +4,6 @@ from .views import gmap_points_view, amap_points_view
 
 urlpatterns = [
     # ... your other url patterns
-    path('map_points/', gmap_points_view, name='gmap_points'),
-    path('amap_points/', amap_points_view, name='amap_points'),
+    path('gmap_points/', gmap_points_view, name='gmap_for_gmap_points'),
+    path('amap_points/', amap_points_view, name='amap_for_gmap_points'),
 ]

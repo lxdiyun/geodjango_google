@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>高德地图显示</title>
+    <title>{{ title }}</title>
     <style>
         html, body {
             height: 100%;
@@ -39,18 +39,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </head>
 <body>
-    <h1>AMap Points</h1>
+    <h1>{{ title }}</h1>
     <div id="container"></div>
     <div id="details"><p>Click on a point to see details here.</p></div>
 
-    <!-- 加载地图JSAPI脚本 -->
+    <!-- load AMAP JS AMPI Scirpt -->
     <script src="https://webapi.amap.com/loader.js"></script>
     <script type="text/javascript">
       window._AMapSecurityConfig = {
-	      securityJsCode: "{{ AMAP_SECURITY_JS_CODE }}",
+	      securityJsCode: "{{ AMAP_SECURITY_JS_CODE }}", // security code
       };
       AMapLoader.load({
-	      key: "{{ AMAP_API_KEY }}", //申请好的 Web 端开发 Key
+	      key: "{{ AMAP_API_KEY }}", // API key
 	      version: "2.0",
 	      plugins: ["AMap.Scale", "AMap.Marker", "AMap.InfoWindow"]
       })
@@ -94,7 +94,7 @@
           });
         })
         .catch((e) => {
-          console.error(e); //加载错误提示
+          console.error(e); // Log any loading errors
         });
     </script>
 </body>

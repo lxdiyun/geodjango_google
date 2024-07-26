@@ -8,7 +8,7 @@ class GMapPoint(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "GMap Points"
+        verbose_name_plural = "Google Map Points"
 
 class GMapPointImage(models.Model):
     map_point = models.ForeignKey(GMapPoint, related_name='images', on_delete=models.CASCADE)

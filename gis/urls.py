@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gmap/', include('gmap.urls')),
+    path('amap/', include('amap.urls')),
 ]
 
 if settings.DEBUG:
