@@ -1,35 +1,34 @@
-These codes are based on the geodjango [tutorial(5.0)](https://docs.djangoproject.com/en/5.0/ref/contrib/gis/tutorial/). 
+# GeoDjango Tutorial Project
 
-The database is SpatiaLite which is the spatial extension to SQLite.
+These codes are based on the GeoDjango [tutorial (5.0)](https://docs.djangoproject.com/en/5.0/ref/contrib/gis/tutorial/).
 
-This project not only follow the steps in the geogjango tutorial but also implenments the below features:
-* Google Map API V3 base in Geographic Admin.[gmap app](gmap/)
-* Gaode(高德) AMap API V2 base in Geographic Admin.[amap app](amap/)
-* Use Google maps to display GMapPoints(http://localhost:8000/gmap/gmap_points). 
-* Use Google maps to display AMapPoints(http://localhost:8000/amap/gmap_points). 
-* Use AMap to display AMapPoints(http://localhost:8000/amap/amap_points). 
-* Use AMap to display GMapPoints(http://localhost:8000/gmap/amap_points). 
+The database used is SpatiaLite, which is the spatial extension to SQLite.
 
-Requirements
-============
-* GEOS
-* GDAL
-* PROJ.4
-* SpatiaLite
-* PILLOW                                                                                                                    
+This project not only follows the steps in the GeoDjango tutorial but also implements the features below:
+* Integration with Google Maps API V3 in the Geographic Admin. [gmap app](gmap/)
+* Integration with Gaode (高德) AMap API V2 in the Geographic Admin. [amap app](amap/)
+* Display of GMapPoints using Google Maps (http://localhost:8000/gmap/gmap_points).
+* Display of AMapPoints using Google Maps (http://localhost:8000/amap/gmap_points).
+* Display of AMapPoints using AMap (http://localhost:8000/amap/amap_points).
+* Display of GMapPoints using AMap (http://localhost:8000/gmap/amap_points).
 
-SETUP
-=====
+## Requirements
 
-Install required libraries 
----------------------
-One method is use conda and follow up the steps in [conda_init_steps.txt](conda_init_steps.txt)
+- GEOS
+- GDAL
+- PROJ.4
+- SpatiaLite
+- Pillow
 
-Confiugre the setting
----------------------
-Google MAP API key is needed for the project. Follow this [document](https://developers.google.com/maps/documentation/javascript/tutorial#api_key).
-Or use AMAP API key and security key. Follow this [document](https://lbs.amap.com/api/javascript-api-v2)
-create .env file,
+## Setup
+
+### Install Required Libraries
+
+One method is to use Conda and follow the steps in [conda_init_steps.txt](conda_init_steps.txt).
+
+### Configure Settings
+A Google Maps API key is required for the project. Follow this [documentation](https://developers.google.com/maps/documentation/javascript/tutorial#api_key) to obtain one.
+Alternatively, you can use an AMap API key and security code. Follow this [documentation](https://lbs.amap.com/api/javascript-api-v2) to create a `.env` file:
 ```env
 # Google Maps settings
 GOOGLE_MAPS_API_KEY=
@@ -41,18 +40,17 @@ AMAP_API_KEY=
 DEFAULT_AMAP_CENTER=30.5,128.05
 ```
 
-Initialize database and create admin user
----------------------
+### Initialize Database and Create Admin User
+Run the following commands:
 ```shell
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-
-Import the world data into database
------------------------------------
-start the django shell
-```python
+### Import World Data into the Database
+Start the Django shell and execute:
+```shell
+python manage.py shell
 from world import load
 load.run()
 ```
